@@ -2,10 +2,12 @@
 
 const url = require('url');
 const got = require('got');
-const promtie = require('promtie');
-const deepAssign = require('deep-assign');
+const PThrottler = require('p-throttler');
+const merge = require('lodash.merge');
 const tokenDealer = require('token-dealer');
 const parseLink = require('github-parse-link');
+
+const distributionRanges = [3600, 10800, 32400, 97200, 291600, 874800, 2624400, 7873200, 23619600, 70858800, 212576400];
 
 function doRequest(url, options) {
     // Use token dealer to circumvent rate limit issues
@@ -18,7 +20,7 @@ function doRequest(url, options) {
             }
         };
 
-        return got(url, deepAssign({}, options.got, {
+        return got(url, merge({}, options.got, {
             headers: token ? { Authorization: `token ${token}` } : null,
         }))
         .then((response) => {
@@ -28,8 +30,7 @@ function doRequest(url, options) {
             err.response && handleResponse(err.response, err);
             throw err;
         });
-    }, options.tokenDealer)
-    .then((response) => response.body);
+    }, options.tokenDealer);
 }
 
 function getPagesAsArray(linkHeader) {
@@ -46,8 +47,6 @@ function getPagesAsArray(linkHeader) {
 }
 
 function parsePage(issues, stats) {
-    const distributionRanges = Object.keys(stats.distribution);
-
     issues.forEach((issue) => {
         // Update count
         stats.count += 1;
@@ -58,51 +57,65 @@ function parsePage(issues, stats) {
         }
 
         // Update distribution count
-        const openTime = (issue.closed_at ? Date.parse(issue.closed_at) : Date.now()) - Date.parse(issue.created_at);
+        const closedTimestamp = (issue.closed_at ? Date.parse(issue.closed_at) : Date.now());
+        const openTime = (closedTimestamp - Date.parse(issue.created_at)) / 1000;
+
         const rangeIndex = distributionRanges.findIndex((range, index, ranges) => {
-            const nextRange = ranges[index + 1];
+            const previousRange = ranges[index - 1] || 0;
 
-            return openTime <= range && (!nextRange || openTime <= nextRange);
+            return openTime >= previousRange && openTime < range;
         });
+        const range = distributionRanges[rangeIndex === -1 ? distributionRanges.length - 1 : rangeIndex];
 
-        stats[distributionRanges[rangeIndex]] += 1;
+        stats.distribution[range] += 1;
     });
+}
+
+function generateEmptyStats() {
+    const stats = {
+        count: 0,
+        openCount: 0,
+        distribution: {},
+    };
+
+    distributionRanges.forEach((range) => {
+        stats.distribution[range] = 0;
+    });
+
+    return stats;
 }
 
 // -------------------------------------------------
 
 function ghIssueStats(repository, options) {
-    options = deepAssign({
-        apiUrl: 'https://api.github.com',     // Custom GitHub API URL to support GitHub enterprise
+    options = merge({
+        apiUrl: 'https://api.github.com',     // GitHub API URL, you may change to point to a GitHub enterprise instance
         tokens: null,                         // Array of API tokens to be used by `token-dealer`
         concurrency: 5,                       // The concurrency in which pages are requested
 
         got: { timeout: 15000, json: true },  // Custom options to be passed to `got`
         tokenDealer: { group: 'github' },     // Custom options to be passed to `token-dealer`
-    });
+    }, options);
 
-    const issuesUrl = url.resolve(options.apiUrl, `repos/${repository}/issues`);
-    const stats = {
-        count: 0,
-        openCount: 0,
-        distribution: {
-            3600: 0, 10800: 0, 32400: 0, 97200: 0, 291600: 0, 874800: 0,
-            2624400: 0, 7873200: 0, 23619600: 0, 70858800: 0, 212576400: 0,
-        },
-    };
+    const stats = generateEmptyStats();
+    const issuesUrl = url.resolve(options.apiUrl, `repos/${repository}/issues?state=all&per_page=100`);
 
     // Fetch first page
     return doRequest(issuesUrl, options)
-    .spread((response) => {
+    .then((response) => {
         parsePage(response.body, stats);
 
-        const remainingPages = getPagesAsArray(response.headers.link).slice(1);
-
         // Fetch the remaining pages concurrently
-        return promtie.map(remainingPages, (page) => {
-            return doRequest(`${issuesUrl}?page=${page}`, options)
-            .then((response) => parsePage(response.body, stats));
-        }, { concurrency: options.concurrency });
+        const remainingPages = getPagesAsArray(response.headers.link).slice(1);
+        const throttler = PThrottler.create(options.concurrency);
+        const promises = remainingPages.map((page) => {
+            return throttler.enqueue(() => {
+                return doRequest(`${issuesUrl}&page=${page}`, options)
+                .then((response) => parsePage(response.body, stats));
+            });
+        });
+
+        return Promise.all(promises);
     })
     .then(() => stats);
 }

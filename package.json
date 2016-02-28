@@ -26,10 +26,10 @@
   "author": "IndigoUnited <hello@indigounited.com> (http://indigounited.com)",
   "license": "MIT",
   "dependencies": {
-    "deep-assign": "^2.0.0",
     "github-parse-link": "^1.1.1",
     "got": "^6.1.2",
-    "promtie": "^0.4.0",
+    "lodash.merge": "^4.3.1",
+    "p-throttler": "^1.0.2",
     "token-dealer": "^1.1.1"
   },
   "devDependencies": {

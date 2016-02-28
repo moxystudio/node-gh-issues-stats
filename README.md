@@ -27,7 +27,7 @@ Collect statistical information about issues of a GitHub repository.
 ```js
 const ghIssueStats = require('gh-issuestats');
 
-ghIssueStats('IndigoUnited/cross-spawn')
+ghIssueStats('IndigoUnited/node-cross-spawn')
 .then((stats) => {
     // `stats` looks like:
     // {
@@ -54,7 +54,7 @@ ghIssueStats('IndigoUnited/cross-spawn')
 
 Available options:
 
-- `apiUrl`: Custom GitHub API URL to support GitHub enterprise, defaults to `https://api.github.com`.
+- `apiUrl`: GitHub API URL, defaults to `https://api.github.com` (you may change to point to a GitHub enterprise instance).
 - `tokens`: Array of API tokens to be used by [token-dealer](https://github.com/IndigoUnited/node-token-dealer), defaults to `null`.
 - `concurrency`: The concurrency in which pages are requested, defaults to `5`.
 - `got` Custom options to be passed to [got](https://github.com/sindresorhus/got), defaults to `{ timeout: 15000, json: true }`
