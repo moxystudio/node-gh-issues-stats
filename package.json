@@ -1,0 +1,46 @@
+{
+  "name": "gh-issuestats",
+  "version": "0.1.0",
+  "description": "Collect statistical information about issues of a GitHub repository",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint '{*.js,lib/**/*.js,test/**/*.js}' --ignore-pattern=test/coverage",
+    "test": "mocha --bail -t 5000",
+    "test-cov": "istanbul cover --dir test/coverage _mocha -- --bail -t 5000 && echo Coverage lies in test/coverage/lcov-report/index.html",
+    "test-travis": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --bail -t 5000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "bugs": {
+    "url": "https://github.com/IndigoUnited/node-gh-issuestats/issues/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/IndigoUnited/node-gh-issuestats.git"
+  },
+  "keywords": [
+    "gh",
+    "github",
+    "issues",
+    "stats",
+    "statistics"
+  ],
+  "author": "IndigoUnited <hello@indigounited.com> (http://indigounited.com)",
+  "license": "MIT",
+  "dependencies": {
+    "deep-assign": "^2.0.0",
+    "github-parse-link": "^1.1.1",
+    "got": "^6.1.2",
+    "promtie": "^0.4.0",
+    "token-dealer": "^1.1.1"
+  },
+  "devDependencies": {
+    "@satazor/eslint-config": "^2.0.0",
+    "chai": "^3.4.1",
+    "coveralls": "^2.11.6",
+    "eslint": "^2.2.0",
+    "istanbul": "^0.4.1",
+    "mocha": "^2.3.4"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  }
+}
