@@ -1,6 +1,6 @@
 {
-  "name": "gh-issuestats",
-  "version": "0.1.0",
+  "name": "gh-issues-stats",
+  "version": "0.0.1",
   "description": "Collect statistical information about issues of a GitHub repository",
   "main": "index.js",
   "scripts": {
@@ -10,11 +10,11 @@
     "test-travis": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --bail -t 5000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "bugs": {
-    "url": "https://github.com/IndigoUnited/node-gh-issuestats/issues/"
+    "url": "https://github.com/IndigoUnited/node-gh-issues-stats/issues/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/IndigoUnited/node-gh-issuestats.git"
+    "url": "git://github.com/IndigoUnited/node-gh-issues-stats.git"
   },
   "keywords": [
     "gh",

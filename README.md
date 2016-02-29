@@ -1,31 +1,31 @@
-# gh-issuestats
+# gh-issues-stats
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
 
-[npm-url]:https://npmjs.org/package/gh-issuestats
-[downloads-image]:http://img.shields.io/npm/dm/gh-issuestats.svg
-[npm-image]:http://img.shields.io/npm/v/gh-issuestats.svg
-[travis-url]:https://travis-ci.org/IndigoUnited/node-gh-issuestats
-[travis-image]:http://img.shields.io/travis/IndigoUnited/node-gh-issuestats/master.svg
-[coveralls-url]:https://coveralls.io/r/IndigoUnited/node-gh-issuestats
-[coveralls-image]:https://img.shields.io/coveralls/IndigoUnited/node-gh-issuestats/master.svg
-[david-dm-url]:https://david-dm.org/IndigoUnited/node-gh-issuestats
-[david-dm-image]:https://img.shields.io/david/IndigoUnited/node-gh-issuestats.svg
-[david-dm-dev-url]:https://david-dm.org/IndigoUnited/node-gh-issuestats#info=devDependencies
-[david-dm-dev-image]:https://img.shields.io/david/dev/IndigoUnited/node-gh-issuestats.svg
+[npm-url]:https://npmjs.org/package/gh-issues-stats
+[downloads-image]:http://img.shields.io/npm/dm/gh-issues-stats.svg
+[npm-image]:http://img.shields.io/npm/v/gh-issues-stats.svg
+[travis-url]:https://travis-ci.org/IndigoUnited/node-gh-issues-stats
+[travis-image]:http://img.shields.io/travis/IndigoUnited/node-gh-issues-stats/master.svg
+[coveralls-url]:https://coveralls.io/r/IndigoUnited/node-gh-issues-stats
+[coveralls-image]:https://img.shields.io/coveralls/IndigoUnited/node-gh-issues-stats/master.svg
+[david-dm-url]:https://david-dm.org/IndigoUnited/node-gh-issues-stats
+[david-dm-image]:https://img.shields.io/david/IndigoUnited/node-gh-issues-stats.svg
+[david-dm-dev-url]:https://david-dm.org/IndigoUnited/node-gh-issues-stats#info=devDependencies
+[david-dm-dev-image]:https://img.shields.io/david/dev/IndigoUnited/node-gh-issues-stats.svg
 
 Collect statistical information about issues of a GitHub repository.
 
 
 ## Installation
 
-`$ npm install gh-issuestats`
+`$ npm install gh-issues-stats`
 
 
 ## Usage
 
 ```js
-const ghIssueStats = require('gh-issuestats');
+const ghIssueStats = require('gh-issues-stats');
 
 ghIssueStats('IndigoUnited/node-cross-spawn')
 .then((stats) => {

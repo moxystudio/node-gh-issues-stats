@@ -10,7 +10,7 @@ nockBack.fixtures = `${__dirname}`;
 nockBack.setMode('record');
 nockBack('fixtures.json', (done) => { nockBackDone = done; });
 
-describe('gh-issuestats', () => {
+describe('gh-issues-stats', () => {
     after(nockBackDone);
 
     it('should give stats of a repository with a single issues page', () => {
