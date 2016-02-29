@@ -31,21 +31,26 @@ ghIssueStats('IndigoUnited/node-cross-spawn')
 .then((stats) => {
     // `stats` looks like:
     // {
-    //   count: 32,
-    //   openCount: 2,
-    //   distribution: {
-    //     3600: 4,           // 1 hour
-    //     10800: 20,         // 3 hours.. and so on
-    //     32400: 6,
-    //     97200: 2,
-    //     291600: 0,
-    //     874800: 0,
-    //     2624400: 0,
-    //     7873200: 0,
-    //     23619600: 0,
-    //     70858800: 0,
-    //     212576400: 0,
-    //   }
+    //   issues: {
+    //     count: 32,
+    //     openCount: 2,
+    //     distribution: {
+    //       3600: 4,           // 1 hour
+    //       10800: 20,         // 3 hours.. and so on
+    //       32400: 6,
+    //       97200: 2,
+    //       291600: 0,
+    //       874800: 0,
+    //       2624400: 0,
+    //       7873200: 0,
+    //       23619600: 0,
+    //       70858800: 0,
+    //       212576400: 0,
+    //     },
+    //   },
+    //   pullRequests: {
+    //      .. same as above but for pull requests
+    //   },
     // }
 }, (err) => {
     console.log('Failed to fetch issue stats', err);

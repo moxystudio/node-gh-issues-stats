@@ -3,9 +3,9 @@
 const url = require('url');
 const got = require('got');
 const PThrottler = require('p-throttler');
-const merge = require('lodash.merge');
 const tokenDealer = require('token-dealer');
 const parseLink = require('github-parse-link');
+const merge = require('lodash.merge');
 
 const distributionRanges = [3600, 10800, 32400, 97200, 291600, 874800, 2624400, 7873200, 23619600, 70858800, 212576400];
 
@@ -48,18 +48,19 @@ function getPagesAsArray(linkHeader) {
 
 function parsePage(issues, stats) {
     issues.forEach((issue) => {
+        const innerStats = issue.pull_request ? stats.pullRequests : stats.issues;
+
         // Update count
-        stats.count += 1;
+        innerStats.count += 1;
 
         // Update open count
         if (issue.state === 'open') {
-            stats.openCount += 1;
+            innerStats.openCount += 1;
         }
 
         // Update distribution count
         const closedTimestamp = (issue.closed_at ? Date.parse(issue.closed_at) : Date.now());
         const openTime = (closedTimestamp - Date.parse(issue.created_at)) / 1000;
-
         const rangeIndex = distributionRanges.findIndex((range, index, ranges) => {
             const previousRange = ranges[index - 1] || 0;
 
@@ -67,19 +68,27 @@ function parsePage(issues, stats) {
         });
         const range = distributionRanges[rangeIndex === -1 ? distributionRanges.length - 1 : rangeIndex];
 
-        stats.distribution[range] += 1;
+        innerStats.distribution[range] += 1;
     });
 }
 
 function generateEmptyStats() {
     const stats = {
-        count: 0,
-        openCount: 0,
-        distribution: {},
+        issues: {
+            count: 0,
+            openCount: 0,
+            distribution: {},
+        },
+        pullRequests: {
+            count: 0,
+            openCount: 0,
+            distribution: {},
+        },
     };
 
     distributionRanges.forEach((range) => {
-        stats.distribution[range] = 0;
+        stats.issues.distribution[range] = 0;
+        stats.pullRequests.distribution[range] = 0;
     });
 
     return stats;
@@ -107,9 +116,9 @@ function ghIssueStats(repository, options) {
 
         // Fetch the remaining pages concurrently
         const remainingPages = getPagesAsArray(response.headers.link).slice(1);
-        const throttler = PThrottler.create(options.concurrency);
+        const pthrottler = PThrottler.create(options.concurrency);
         const promises = remainingPages.map((page) => {
-            return throttler.enqueue(() => {
+            return pthrottler.enqueue(() => {
                 return doRequest(`${issuesUrl}&page=${page}`, options)
                 .then((response) => parsePage(response.body, stats));
             });
