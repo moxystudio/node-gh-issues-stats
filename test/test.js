@@ -8,7 +8,7 @@ let nockBackDone;
 
 nockBack.fixtures = `${__dirname}`;
 nockBack.setMode('record');
-nockBack('fixtures.json', (done) => { nockBackDone = done; });
+nockBack('fixtures.json', { enable_reqheaders_recording: true }, (done) => { nockBackDone = done; });
 
 describe('gh-issues-stats', () => {
     after(nockBackDone);
