@@ -12,7 +12,7 @@ const distributionRanges = [3600, 10800, 32400, 97200, 291600, 874800, 2624400, 
 function doRequest(url, options) {
     // Use token dealer to circumvent rate limit issues
     return tokenDealer(options.tokens, (token, exhaust) => {
-        const handleResponse = (response, err) => {
+        const handleRateLimit = (response, err) => {
             if (response.headers['x-ratelimit-remaining'] === '0') {
                 const isRateLimitError = err && err.statusCode === 403 && /rate limit/i.test(response.body.message);
 
@@ -24,10 +24,10 @@ function doRequest(url, options) {
             headers: token ? { Authorization: `token ${token}` } : null,
         }))
         .then((response) => {
-            handleResponse(response);
+            token && handleRateLimit(response);
             return response;
         }, (err) => {
-            err.response && handleResponse(err.response, err);
+            token && err.response && handleRateLimit(err.response, err);
             throw err;
         });
     }, options.tokenDealer);
