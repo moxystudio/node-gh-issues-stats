@@ -1,0 +1,40 @@
+[
+    {
+        "scope": "https://api.github.com:443",
+        "method": "GET",
+        "path": "/repos/IndigoUnited/node-gloth/issues?state=all&per_page=100",
+        "body": "",
+        "status": 200,
+        "response": [
+            "1f8b0800000000000003ad57cb72db3614fd15549b361e4b7c804f4dda74d569b66db268ed8c8dc785849824580294a27832937fe8ae9bfe5bbfa09fd00b92526d274e223b63cf4843e19cfb3e173cbb9ef55d355bced6ceb5761904acd58b9576eb9e2f84a9830e5a6383e78dd42bf3b2d10e64d01809f35565dc3ad0d6f6608368763a1b0e6a67baddc5c30991a7621c2afb088e8353c148751d34ac8677488df1d4d0b8af43be27435ed87c35d6910a39d7aeaeee24e14655eeab47db57d5500d2d67cb88c67999e559793a6bfa9a43878f4e674ebb0ab0de2f5bc91c10ac2327ce900d74569b86e48b7011927ffffeeb3db2f4d683ae679559e90631ab0ea0b90268a1d366ce8ddb5b4af2324cb2ec74c636ccb1ee6ef58687766a2b4f2a4ce330674387f54134c19f6dbea7c8b8ea2616",
+            "1fc4ccbbf1a906f57436f898679f4ee1c710ca5495d922dfdd006ecfc43d2683031c7d1ebfeb66f5182a845f0738678019c5307d0fafb4fd5c03dfe7de00bd0efcc785969ecc62593a900f737102a383db067dbb1ea46260edb9159d6e1df6d30333798b02294db7628d7ecb1e418914169906997a58c0031429be64dcefabc188bd0eda4e6f98d8f9747520406fb00a8fe1bd4382b46ed70e63ee47186b82ca7dc164edc758b1cac2bbbdd2ce9667af864e70feb8a88c058980ca882bfc321ec6b9b656af1ac0230d4acce9acd61558679ac383831c2e4314da0e904e5e308794711865f3309e47e18ba85cd202ff7f4703fda03f1f9e89c365182de3c89f19bdf980663c12e6fe8857bc8b0efec03584c61eb5cc3cd5b8cb3ead1c9f155fa9957aa8762f3cd8c7c59c583f986440cfb0c6dcc81dd6e067406123cb2ddbc0f2bc396f969d2faf5bdefdf4bf9df995f0eabbfd7d60bbdd2e9ab67e6d07b16e99b8622b08fc9927e4756f1d697b5e69bb0649b4b3a481eded5d724ab66b2dd6e4e444e3afc6116170d7e069be233bd37744f4a8418d3ba03ad6ace0e464e17d79ae885b23ce97864c55262d3623d811ecb0ecc3572258b37765fcc91ae5b6ac03b2c5db0cd200a9b0e1d0e1fdaa336adc7effbcff930c22bbd516084eee6893a323e837eec6ade9ae08ee4626d9286a84359228fd06ece0e579f3336bdb9d7f828a3dfc5843872b7345962dabea0b877b73c8fb7c3e3f6f5ea02b37d3e42b8e3bc727240a313d75ed133930cfc9d96501459167eaf2ff92dcb80868cb98b0872b190f467830818a24c64b4041958c25a7511133952a46a910f82c2a8bf209b9dc0c2bff7234162ac57874a4b10944058758515182c880f1389222ca4401a18c145008191afb85f91c43d7998e6845c416bb666c0b46a44615f317c8c917ca651295e2b8c027504a8b9ce690664ab21ce248c49152692c5828306ca9321f78868127933108c384f3e23863134889a4c8e24ca449ae7296412c521517a977a010715a5234e658fb63bab7959790e6c991b646902a13caf3222969a9b230094b8c87aa10030dd328576984b63aa871c648ef74b5b8803778d392936551a6112db3e32c4f208822012ca594c92ce5ac605ce4312d531e16f8970e967fd26f088ec20676bebe0d6e159c5b9c33ffca30b95080e032a7c7b93081229a412673192671cef3381532a6342b6295a7988a70a8eacb16ef8f1267d8109ff37d7d63a98af4d8669a40a98a28ba8c8670140b3f40719670a578426949799aa359abebb6d26a77087fb1ab2b5484ea10772ef3326647c63d825216c525002f644255964a1c0c0e3ccc311925a884fb0663520e6926e9103adea1b59d0b3d653d0e6588e53acefa04029ea8489512bb8e65a1c28c9779a9421cae58842536205a1fb739e14cae509ad101efcea113bc220eb28fed60d1a3f3e657f02a0be44c7965f70af8c5f2d6a2a60752a63c4e53a54a1e6511b6812a2291c89051fc6449c64adf25255b2c165f2c85a3e28e0a7d77e76c9925d3adc6ebf4d98db7878536a3eff8f27cfb71f004299f3be2df98a67db55f4aa7a46f7d9afc1de894f829f1d970ba86c18ba77801fe0137052aa2f4f36301fc361976a16df15a8de35583b5b88a9f919b1d8f24b66f5bd339e8485bb1e69bf3e637d37f8b06f0d667c80adcb81d6f6e544b14b31eb07ccb5adc534f036f7ef6eed57ff256e19b1d100000"
+        ],
+        "headers": {
+            "server": "GitHub.com",
+            "date": "Sun, 20 Mar 2016 14:57:33 GMT",
+            "content-type": "application/json; charset=utf-8",
+            "transfer-encoding": "chunked",
+            "connection": "close",
+            "status": "200 OK",
+            "x-ratelimit-limit": "5000",
+            "x-ratelimit-remaining": "4995",
+            "x-ratelimit-reset": "1458486486",
+            "cache-control": "private, max-age=60, s-maxage=60",
+            "vary": "Accept, Authorization, Cookie, X-GitHub-OTP, Accept-Encoding",
+            "etag": "W/\"76b63934a5a0e7e2a9106e522338f928\"",
+            "x-oauth-scopes": "",
+            "x-accepted-oauth-scopes": "repo",
+            "x-github-media-type": "github.v3",
+            "access-control-expose-headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+            "access-control-allow-origin": "*",
+            "content-security-policy": "default-src 'none'",
+            "strict-transport-security": "max-age=31536000; includeSubdomains; preload",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "deny",
+            "x-xss-protection": "1; mode=block",
+            "x-served-by": "bd82876e9bf04990f289ba22f246ee9b",
+            "content-encoding": "gzip",
+            "x-github-request-id": "D98186F0:6B95:100A6CE:56EEBA5D"
+        }
+    }
+]

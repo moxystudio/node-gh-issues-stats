@@ -66,6 +66,7 @@ function parsePage(issues, stats) {
 
             return openTime >= previousRange && openTime < range;
         });
+        /* istanbul ignore next */
         const range = distributionRanges[rangeIndex === -1 ? distributionRanges.length - 1 : rangeIndex];
 
         innerStats.distribution[range] += 1;
