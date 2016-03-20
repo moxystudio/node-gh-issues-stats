@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint '{*.js,lib/**/*.js,test/**/*.js}' --ignore-pattern=test/coverage",
-    "test": "NOCK_BACK_MODE=record mocha --bail -t 0",
-    "test-cov": "NOCK_BACK_MODE=record istanbul cover --dir test/coverage _mocha -- --bail -t 15000 && echo Coverage lies in test/coverage/lcov-report/index.html",
-    "NOCK_BACK_MODE=lockdown test-travis": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --bail && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "NOCK_BACK_MODE=record mocha --bail -t 20000",
+    "test-cov": "NOCK_BACK_MODE=record istanbul cover --dir test/coverage _mocha -- --bail -t 20000 && echo Coverage lies in test/coverage/lcov-report/index.html",
+    "test-travis": "NOCK_BACK_MODE=lockdown istanbul cover _mocha --report lcovonly -- --bail && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "bugs": {
     "url": "https://github.com/IndigoUnited/node-gh-issues-stats/issues/"
