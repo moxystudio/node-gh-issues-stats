@@ -1,6 +1,6 @@
 {
   "name": "gh-issues-stats",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Collect statistical information about issues of a GitHub repository",
   "main": "index.js",
   "scripts": {
