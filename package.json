@@ -4,7 +4,7 @@
   "description": "Collect statistical information about issues of a GitHub repository",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint '{*.js,lib/**/*.js,test/**/*.js}' --ignore-pattern=test/coverage",
+    "lint": "eslint '{*.js,test/**/*.js}' --ignore-pattern=test/coverage",
     "test": "NOCK_BACK_MODE=record mocha --bail -t 20000",
     "test-cov": "NOCK_BACK_MODE=record istanbul cover --dir test/coverage _mocha -- --bail -t 20000 && echo Coverage lies in test/coverage/lcov-report/index.html",
     "test-travis": "NOCK_BACK_MODE=lockdown istanbul cover _mocha --report lcovonly -- --bail && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
