@@ -22,6 +22,7 @@ function doRequest(url, options) {
 
         return got(url, merge({}, options.got, {
             headers: token ? { Authorization: `token ${token}` } : null,
+            json: true,
         }))
         .then((response) => {
             token && handleRateLimit(response);
@@ -103,7 +104,7 @@ function ghIssueStats(repository, options) {
         tokens: null,                         // Array of API tokens to be used by `token-dealer`
         concurrency: 5,                       // The concurrency in which pages are requested
 
-        got: { timeout: 15000, json: true },  // Custom options to be passed to `got`
+        got: { timeout: 15000 },  // Custom options to be passed to `got`
         tokenDealer: { group: 'github' },     // Custom options to be passed to `token-dealer`
     }, options);
 
