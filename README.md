@@ -62,7 +62,7 @@ Available options:
 - `apiUrl`: GitHub API URL, defaults to `https://api.github.com` (you may change to point to a GitHub enterprise instance).
 - `tokens`: Array of API tokens to be used by [token-dealer](https://github.com/IndigoUnited/node-token-dealer), defaults to `null`.
 - `concurrency`: The concurrency in which pages are requested, defaults to `5`.
-- `got` Custom options to be passed to [got](https://github.com/sindresorhus/got), defaults to `{ timeout: 15000 }`
+- `got` Custom options to be passed to [got](https://github.com/sindresorhus/got), defaults to `{ timeout: 15000, headers: { Accept: 'application/vnd.github.v3+json' } }`
 - `tokenDealer`: Custom options to be passed to [token-dealer](https://github.com/IndigoUnited/node-token-dealer), defaults to `{ group: 'github' }`
 
 

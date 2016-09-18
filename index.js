@@ -104,7 +104,10 @@ function ghIssueStats(repository, options) {
         tokens: null,                         // Array of API tokens to be used by `token-dealer`
         concurrency: 5,                       // The concurrency in which pages are requested
 
-        got: { timeout: 15000 },  // Custom options to be passed to `got`
+        got: {                                // Custom options to be passed to `got`
+            timeout: 15000,
+            headers: { Accept: 'application/vnd.github.v3+json' },
+        },
         tokenDealer: { group: 'github' },     // Custom options to be passed to `token-dealer`
     }, options);
 
