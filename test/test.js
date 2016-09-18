@@ -136,20 +136,21 @@ describe('gh-issues-stats', () => {
         });
     });
 
-    it('should use options.tokens when fetching pages', () => {
-        let authorizationHeader;
+    it('should use options.tokens when fetching pages, preserving the accept header', () => {
+        let headers;
 
         nock('https://api.github.com')
           .get('/repos/my-org/my-repo/issues')
           .query(true)
           .reply(200, function () {
-              authorizationHeader = this.req.headers.authorization;
+              headers = this.req.headers;
               return [];
           });
 
         return ghIssueStats('my-org/my-repo', { tokens: ['my-token'] })
         .then(() => {
-            expect(authorizationHeader).to.equal('token my-token');
+            expect(headers.authorization).to.equal('token my-token');
+            expect(headers.accept).to.equal('application/vnd.github.v3+json');
         });
     });
 

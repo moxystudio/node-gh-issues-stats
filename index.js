@@ -21,7 +21,7 @@ function doRequest(url, options) {
         };
 
         return got(url, merge({}, options.got, {
-            headers: token ? { Authorization: `token ${token}` } : null,
+            headers: token ? { authorization: `token ${token}` } : {},
             json: true,
         }))
         .then((response) => {
@@ -106,7 +106,7 @@ function ghIssueStats(repository, options) {
 
         got: {                                // Custom options to be passed to `got`
             timeout: 15000,
-            headers: { Accept: 'application/vnd.github.v3+json' },
+            headers: { accept: 'application/vnd.github.v3+json' },
         },
         tokenDealer: { group: 'github' },     // Custom options to be passed to `token-dealer`
     }, options);
