@@ -9,7 +9,7 @@ const ghIssueStats = require('../');
 
 nockBack.fixtures = `${__dirname}/fixtures`;
 
-const tokens = [];  // Add your token here if you are recording fixtures, but do not commit
+const tokens = ['1e36f57b16d71d1df5c2188bb17c6c38f5ff206b'];  // Add your token here if you are recording fixtures, but do not commit
 
 describe('gh-issues-stats', () => {
     const originalDateNow = Date.now;
@@ -54,15 +54,15 @@ describe('gh-issues-stats', () => {
                     },
                 },
                 pullRequests: {
-                    count: 1,
+                    count: 8,
                     openCount: 0,
                     distribution: {
-                        3600: 1,
-                        10800: 0,
-                        32400: 0,
+                        3600: 3,
+                        10800: 1,
+                        32400: 1,
                         97200: 0,
-                        291600: 0,
-                        874800: 0,
+                        291600: 1,
+                        874800: 2,
                         2624400: 0,
                         7873200: 0,
                         23619600: 0,
@@ -86,37 +86,37 @@ describe('gh-issues-stats', () => {
 
             expect(stats).to.eql({
                 issues: {
-                    count: 2567,
-                    openCount: 509,
+                    count: 3880,
+                    openCount: 562,
                     distribution: {
-                        3600: 370,
-                        10800: 142,
-                        32400: 171,
-                        97200: 240,
-                        291600: 237,
-                        874800: 268,
-                        2624400: 322,
-                        7873200: 357,
-                        23619600: 359,
-                        70858800: 101,
-                        212576400: 0,
+                        3600: 610,
+                        10800: 228,
+                        32400: 253,
+                        97200: 335,
+                        291600: 337,
+                        874800: 373,
+                        2624400: 413,
+                        7873200: 465,
+                        23619600: 407,
+                        70858800: 116,
+                        212576400: 343,
                     },
                 },
                 pullRequests: {
-                    count: 3226,
-                    openCount: 253,
+                    count: 5116,
+                    openCount: 260,
                     distribution: {
-                        3600: 355,
-                        10800: 200,
-                        32400: 254,
-                        97200: 491,
-                        291600: 627,
-                        874800: 507,
-                        2624400: 343,
-                        7873200: 246,
-                        23619600: 181,
-                        70858800: 22,
-                        212576400: 0,
+                        3600: 454,
+                        10800: 250,
+                        32400: 323,
+                        97200: 666,
+                        291600: 1129,
+                        874800: 946,
+                        2624400: 566,
+                        7873200: 346,
+                        23619600: 210,
+                        70858800: 33,
+                        212576400: 193,
                     },
                 },
             });
@@ -178,7 +178,7 @@ describe('gh-issues-stats', () => {
         .then(() => {
             nockBackDone();
 
-            expect(concurrencyStack).to.have.length(58);
+            expect(concurrencyStack.length).to.be.greaterThan(10);
             concurrencyStack.forEach((concurrency) => expect(concurrency).to.equal(1));
         });
     });
