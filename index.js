@@ -25,10 +25,10 @@ function doRequest(url, options) {
             json: true,
         }))
         .then((response) => {
-            token && handleRateLimit(response);
+            handleRateLimit(response);
             return response;
         }, (err) => {
-            token && err.response && handleRateLimit(err.response, err);
+            err.response && handleRateLimit(err.response, err);
             throw err;
         });
     }, options.tokenDealer);
