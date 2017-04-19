@@ -28,7 +28,7 @@
   "dependencies": {
     "github-parse-link": "^1.1.1",
     "got": "^6.1.2",
-    "lodash.merge": "^4.3.1",
+    "lodash.merge": "^4.6.0",
     "p-throttler": "^1.0.2",
     "token-dealer": "^2.1.0"
   },
