@@ -11,7 +11,7 @@
 [coveralls-image]:https://img.shields.io/coveralls/IndigoUnited/node-gh-issues-stats/master.svg
 [david-dm-url]:https://david-dm.org/IndigoUnited/node-gh-issues-stats
 [david-dm-image]:https://img.shields.io/david/IndigoUnited/node-gh-issues-stats.svg
-[david-dm-dev-url]:https://david-dm.org/IndigoUnited/node-gh-issues-stats#info=devDependencies
+[david-dm-dev-url]:https://david-dm.org/IndigoUnited/node-gh-issues-stats?type=dev
 [david-dm-dev-image]:https://img.shields.io/david/dev/IndigoUnited/node-gh-issues-stats.svg
 
 Collect statistical information about issues of a GitHub repository.
