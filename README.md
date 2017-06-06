@@ -15,6 +15,8 @@
 [david-dm-image]:https://img.shields.io/david/IndigoUnited/node-gh-issues-stats.svg
 [david-dm-dev-url]:https://david-dm.org/IndigoUnited/node-gh-issues-stats?type=dev
 [david-dm-dev-image]:https://img.shields.io/david/dev/IndigoUnited/node-gh-issues-stats.svg
+[greenkeeper-image]:https://badges.greenkeeper.io/IndigoUnited/node-gh-issues-stats.svg
+[greenkeeper-url]:https://greenkeeper.io/
 
 Collect statistical information about issues of a GitHub repository.
 
