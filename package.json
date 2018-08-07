@@ -30,7 +30,7 @@
     "got": "^7.0.0",
     "lodash.merge": "^4.3.1",
     "p-throttler": "^1.0.2",
-    "token-dealer": "^2.1.0"
+    "token-dealer": "^3.0.0"
   },
   "devDependencies": {
     "@satazor/eslint-config": "^3.0.0",
