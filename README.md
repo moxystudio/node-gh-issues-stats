@@ -74,7 +74,7 @@ Available options:
 
 ```sh
 $ npm test
-$ npm test-cov # to get coverage report
+$ npm test -- --watch # during development
 ```
 
 
