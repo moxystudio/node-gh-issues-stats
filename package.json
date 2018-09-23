@@ -1,7 +1,7 @@
 {
   "name": "gh-issues-stats",
   "description": "Collect statistical information about issues of a GitHub repository",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "keywords": [
     "gh",
     "github",
