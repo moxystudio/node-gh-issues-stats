@@ -1,21 +1,7 @@
 {
   "name": "gh-issues-stats",
-  "version": "2.0.4",
   "description": "Collect statistical information about issues of a GitHub repository",
-  "main": "index.js",
-  "scripts": {
-    "lint": "eslint '{*.js,test/**/*.js}' --ignore-pattern=test/coverage",
-    "test": "NOCK_BACK_MODE=record mocha --bail -t 20000",
-    "test-cov": "NOCK_BACK_MODE=record istanbul cover --dir test/coverage _mocha -- --bail -t 20000 && echo Coverage lies in test/coverage/lcov-report/index.html",
-    "test-travis": "NOCK_BACK_MODE=lockdown istanbul cover _mocha --report lcovonly -- --bail && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
-  },
-  "bugs": {
-    "url": "https://github.com/IndigoUnited/node-gh-issues-stats/issues/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/IndigoUnited/node-gh-issues-stats.git"
-  },
+  "version": "2.0.4",
   "keywords": [
     "gh",
     "github",
@@ -23,25 +9,59 @@
     "stats",
     "statistics"
   ],
-  "author": "IndigoUnited <hello@indigounited.com> (http://indigounited.com)",
+  "author": "André Cruz <andre@moxy.studio>",
+  "homepage": "https://github.com/moxystudio/node-gh-issues-stats",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:moxystudio/node-gh-issues-stats.git"
+  },
   "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest --env node --coverage",
+    "test-travis": "NOCK_BACK_MODE=lockdown npm test",
+    "prerelease": "npm t && npm run lint",
+    "release": "standard-version",
+    "precommit": "lint-staged",
+    "commitmsg": "commitlint -e $GIT_PARAMS"
+  },
+  "standard-version": {
+    "scripts": {
+      "posttag": "git push --follow-tags origin master && npm publish"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix --ignore-pattern test/fixtures",
+      "git add"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "dependencies": {
     "github-parse-link": "^1.1.1",
-    "got": "^7.0.0",
-    "lodash.merge": "^4.3.1",
-    "p-throttler": "^1.0.2",
-    "token-dealer": "^2.1.0"
+    "got": "^9.2.0",
+    "lodash.merge": "^4.6.1",
+    "p-all": "^1.0.0",
+    "token-dealer": "^3.0.0"
   },
   "devDependencies": {
-    "@satazor/eslint-config": "^3.0.0",
-    "chai": "^4.0.2",
-    "coveralls": "^2.11.6",
-    "eslint": "^3.0.0",
-    "istanbul": "^0.4.1",
-    "mocha": "^3.0.1",
-    "nock": "^9.0.0"
-  },
-  "engines": {
-    "node": ">=4.0.0"
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.0",
+    "eslint": "^5.3.0",
+    "eslint-config-moxy": "^6.0.1",
+    "husky": "^0.14.0",
+    "jest": "^23.4.1",
+    "jest-serializer-path": "^0.1.15",
+    "lint-staged": "^7.2.0",
+    "standard-version": "^4.4.0",
+    "nock": "^10.0.0"
   }
 }

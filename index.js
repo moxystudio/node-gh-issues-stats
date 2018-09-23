@@ -2,7 +2,7 @@
 
 const url = require('url');
 const got = require('got');
-const PThrottler = require('p-throttler');
+const pAll = require('p-all');
 const tokenDealer = require('token-dealer');
 const parseLink = require('github-parse-link');
 const merge = require('lodash.merge');
@@ -26,6 +26,7 @@ function doRequest(url, options) {
         }))
         .then((response) => {
             handleRateLimit(response);
+
             return response;
         }, (err) => {
             err.response && handleRateLimit(err.response, err);
@@ -100,15 +101,19 @@ function generateEmptyStats() {
 
 function ghIssueStats(repository, options) {
     options = merge({
-        apiUrl: 'https://api.github.com',     // GitHub API URL, you may change to point to a GitHub enterprise instance
-        tokens: null,                         // Array of API tokens to be used by `token-dealer`
-        concurrency: 5,                       // The concurrency in which pages are requested
-
-        got: {                                // Custom options to be passed to `got`
+        // GitHub API URL, you may change to point to a GitHub enterprise instance
+        apiUrl: 'https://api.github.com',
+        // Array of API tokens to be used by `token-dealer`
+        tokens: null,
+        // The concurrency in which pages are requested
+        concurrency: 5,
+        // Custom options to be passed to `got`
+        got: {
             timeout: 15000,
             headers: { accept: 'application/vnd.github.v3+json' },
         },
-        tokenDealer: { group: 'github' },     // Custom options to be passed to `token-dealer`
+        // Custom options to be passed to `token-dealer`
+        tokenDealer: { group: 'github' },
     }, options);
 
     const stats = generateEmptyStats();
@@ -121,15 +126,12 @@ function ghIssueStats(repository, options) {
 
         // Fetch the remaining pages concurrently
         const remainingPages = getPagesAsArray(response.headers.link).slice(1);
-        const pthrottler = PThrottler.create(options.concurrency);
-        const promises = remainingPages.map((page) => {
-            return pthrottler.enqueue(() => {
-                return doRequest(`${issuesUrl}&page=${page}`, options)
-                .then((response) => parsePage(response.body, stats));
-            });
-        });
+        const actions = remainingPages.map((page) => () =>
+            doRequest(`${issuesUrl}&page=${page}`, options)
+            .then((response) => parsePage(response.body, stats))
+        );
 
-        return Promise.all(promises);
+        return pAll(actions, { concurrency: options.concurrency });
     })
     .then(() => stats);
 }
