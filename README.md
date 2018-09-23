@@ -1,14 +1,14 @@
 # gh-issues-stats
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url] [![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url] [![Greenkeeper badge][greenkeeper-image]][greenkeeper-url]
 
 [npm-url]:https://npmjs.org/package/gh-issues-stats
-[downloads-image]:http://img.shields.io/npm/dm/gh-issues-stats.svg
-[npm-image]:http://img.shields.io/npm/v/gh-issues-stats.svg
+[downloads-image]:https://img.shields.io/npm/dm/gh-issues-stats.svg
+[npm-image]:https://img.shields.io/npm/v/gh-issues-stats.svg
 [travis-url]:https://travis-ci.org/moxystudio/node-gh-issues-stats
 [travis-image]:http://img.shields.io/travis/moxystudio/node-gh-issues-stats/master.svg
-[coveralls-url]:https://coveralls.io/r/moxystudio/node-gh-issues-stats
-[coveralls-image]:https://img.shields.io/coveralls/moxystudio/node-gh-issues-stats/master.svg
+[codecov-url]:https://codecov.io/gh/moxystudio/node-gh-issues-stats
+[codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/node-gh-issues-stats/master.svg
 [david-dm-url]:https://david-dm.org/moxystudio/node-gh-issues-stats
 [david-dm-image]:https://img.shields.io/david/moxystudio/node-gh-issues-stats.svg
 [david-dm-dev-url]:https://david-dm.org/moxystudio/node-gh-issues-stats?type=dev
