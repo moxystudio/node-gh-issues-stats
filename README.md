@@ -6,7 +6,7 @@
 [downloads-image]:https://img.shields.io/npm/dm/gh-issues-stats.svg
 [npm-image]:https://img.shields.io/npm/v/gh-issues-stats.svg
 [travis-url]:https://travis-ci.org/moxystudio/node-gh-issues-stats
-[travis-image]:http://img.shields.io/travis/moxystudio/node-gh-issues-stats/master.svg
+[travis-image]:https://img.shields.io/travis/moxystudio/node-gh-issues-stats/master.svg
 [codecov-url]:https://codecov.io/gh/moxystudio/node-gh-issues-stats
 [codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/node-gh-issues-stats/master.svg
 [david-dm-url]:https://david-dm.org/moxystudio/node-gh-issues-stats
@@ -78,4 +78,4 @@ $ npm test -- --watch # during development
 
 ## License
 
-Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+Released under the [MIT License](https://www.opensource.org/licenses/mit-license.php).
