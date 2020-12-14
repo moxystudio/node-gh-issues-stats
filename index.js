@@ -5,7 +5,7 @@ const got = require('got');
 const pAll = require('p-all');
 const tokenDealer = require('token-dealer');
 const parseLink = require('github-parse-link');
-const merge = require('lodash.merge');
+const merge = require('lodash/merge');
 
 const distributionRanges = [3600, 10800, 32400, 97200, 291600, 874800, 2624400, 7873200, 23619600, 70858800, 212576400];
 
